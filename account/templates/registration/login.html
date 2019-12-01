@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}-Login{%endblock%}
+
+{%block content%}
+<section class="log-in">
+        
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><img src="{%static 'images/signin-image.jpg'%}" alt="sing up image"></figure>
+            </div>
+
+            <div class="signin-form">
+                <h2 class="form-title">Log In</h2>
+                <form method="POST" class="register-form" id="login-form" action="">
+                        {%csrf_token%}
+                    <div class="form-group"> <!--아이디 입력하는 부분입니다.-->
+                        <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        {{form.username}}
+                    </div>
+                    <br>
+                    <div class="form-group"> <!--비밀번호 입력하는 부분입니다.-->
+                        <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                        {{form.password}}
+                    </div>
+                    <Br>
+                    <div class="form-group form-button"> <!--로그인 하거나 회원가입하는 버튼 부분 입니다.-->
+                        <input type="submit" name="login" id="login" class="form-submit" value="Log in"/>
+                        <a href="{%url 'register'%}" name="signup" id="signup" class="form-submit">Sign up</a>
+                    </div>  
+                </form>
+            </div>
+        </div>
+</section>
+{%endblock%}
