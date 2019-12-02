@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}-Registration{%endblock%}
+
+{%block content%}
+<section class="signup">
+    <div class="container">
+        <div class="signup-content">
+            <div class="signup-form">
+                <h2 class="form-title">Sign up</h2>
+                <!--여기서부터 가입 폼 입니다.-->
+                <form method="POST" class="register-form" id="register-form"> 
+                        {%csrf_token%}
+                    <div class="form-group"> <!--이름 입력-->
+                        <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        {{form.username}}
+                    </div>
+                    <div class="form-group"> <!--이메일 입력-->
+                        <label for="email"><i class="zmdi zmdi-email"></i></label>
+                        {{form.email}}
+                    </div>
+                    <div class="form-group"> <!--패스워드 입력-->
+                        <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                        {{form.password}}
+                    </div>
+                    <div class="form-group"> <!--패스워드 재확인-->
+                        <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                        {{form.password2}}
+                    </div>
+                    <div class="form-group form-button"> <!--submit 버튼-->
+                        <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                    </div>
+                </form>
+            </div>
+            <div class="signup-image">
+                <figure><img src="{%static 'images/signup-image.jpg'%}" alt="sing up image"></figure>
+            </div>
+        </div>
+    </div>
+</section>
+{%endblock%}
