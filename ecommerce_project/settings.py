@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'product',
-    'account',
+    'accounts',
     'sell',
 ]
 
@@ -127,4 +127,4 @@ STATICFILES_DIRS = [
 ]
 
 #User model changes
-AUTH_USER_MODEL = 'account.User'
+AUTH_USER_MODEL = 'accounts.User'
