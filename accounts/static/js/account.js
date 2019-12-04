@@ -9,5 +9,4 @@ pw2.attr("placeholder","Repeat PassWord");
 var btn = $("#signup");
 
 var cs = $("#id_classification");
-cs.css('display','flex');
-cs.css('align-items','center');
+cs.css('display','inline');
