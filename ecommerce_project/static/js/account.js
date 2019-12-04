@@ -6,3 +6,6 @@ var email = $('#id_email');
 email.attr("placeholder","Your Email");
 var pw2 = $("#id_password2");
 pw2.attr("placeholder","Repeat PassWord");
+
+var cs = $("#id_classification");
+cs.css('display','flex');

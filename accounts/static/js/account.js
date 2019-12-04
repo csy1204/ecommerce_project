@@ -7,3 +7,6 @@ email.attr("placeholder","Your Email");
 var pw2 = $("#id_password2");
 pw2.attr("placeholder","Repeat PassWord");
 var btn = $("#signup");
+
+var cs = $("#id_classification");
+cs.css('display','inline');
