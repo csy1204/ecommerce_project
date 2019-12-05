@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+
+{% block content %}
+
+<div class="card">
+  <h2>{{product.name}}</h2>
+  {{product.created_at}}
+  {% if product.status == 1 %}
+    <button>Bid</button>
+  {% else %}
+    <button>Purchase</button>
+  {% endif %}
+</div>
+
+{% endblock %}

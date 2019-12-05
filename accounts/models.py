@@ -14,7 +14,7 @@ class User(AbstractUser):
     classification = models.CharField(max_length=10, blank=False,choices=CHOISES)
 
     def is_buyer(self):
-        return self.classification == "Buyer"
+        return self.classification == "Buy"
 
     def is_seller(self):
-        return self.classification == "Seller"
+        return self.classification == "Sell"
