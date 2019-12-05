@@ -12,3 +12,9 @@ class User(AbstractUser):
     pw = models.CharField(max_length=45, default=True)
     id = models.CharField(max_length=45, default=True)
     classification = models.CharField(max_length=10, blank=False,choices=CHOISES)
+
+    def is_buyer(self):
+        return self.classification == "Buyer"
+
+    def is_seller(self):
+        return self.classification == "Seller"
