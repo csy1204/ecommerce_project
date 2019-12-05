@@ -1,9 +1,12 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from .models import Product
 from django.urls import reverse_lazy
-
+from .forms import ProductForm
+from datetime import datetime
+from django.utils import timezone
 
 class ProductList(ListView):
     model = Product
@@ -20,9 +23,20 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
     template_name='product_detail.html'
 
-class ProductCreateView(CreateView):
-    model = Product
-    template_name = 'product_create.html'
-    fields = ('name', 'phone_number', 'trading_place', 'status', 'price', 'image', 'end_time')
-    success_url = reverse_lazy('products')
+def ProductCreateView(request):
+    if request.method == 'POST':                                                          
+        product_form = ProductForm(request.POST)         
+        print("진입")                                         
+        if product_form.is_valid():
+            print("valid")
+            new_product = product_form.save(commit=False)                                             #commit=False -> 데이터베이스에 넘기지 않음 객체만 만들어짐
+            new_product.seller = request.user 
+            # naive datetime -> UTC +9:00 으로 변환                    
+            new_product.end_time = timezone.make_aware(datetime.strptime(request.POST['end_time'], "%Y/%m/%d %H:%M"))
+            new_product.save()                 
+            return HttpResponseRedirect('/product')
+        print("not valid")
+    else:
+        product_form = ProductForm()                                                              
 
+    return render(request, 'product_create.html',{'form':product_form})

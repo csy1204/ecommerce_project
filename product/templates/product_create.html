@@ -1,5 +1,4 @@
 {%extends 'base.html'%}
-
 {%block content%}
 <div class="container">
     <form method="post">
@@ -8,5 +7,7 @@
         <button type="submit" class="btn btn-success">Create</button>
     </form>
 </div>
-
+<script>
+   $("#id_end_time").datetimepicker({format: 'Y/m/d H:i'});
+</script>
 {%endblock%}
