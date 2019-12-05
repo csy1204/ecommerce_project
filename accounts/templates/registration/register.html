@@ -11,18 +11,17 @@
                 <!--여기서부터 가입 폼 입니다.-->
                 <form method="POST" class="register-form" id="register-form"> 
                         {%csrf_token%}
-                    <div class="classification"> <!--Buyer Seller 구분입니다.-->
-                        <p>
-                            <input type="radio" id="test1" name="radio-group">
-                            <label for="test1">Buyer &nbsp; &nbsp; &nbsp; &nbsp;</label>
-                            {{form.classification}}
-                            <input type="radio" id="test2" name="radio-group">
-                            <label for="test2">Seller</label>
-                        </p>
-                        </div>
+                        <input type="hidden" name = 'pw' value="asd">
+                        <input type="hidden" name = 'id' value="asd">
+                    <div class="form-group"> <!--Buyer Seller 구분입니다.-->I am {{form.classification}}
+                    </div>
+                    <div class="form-group"> <!--이름 입력-->
+                        <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        {{form.username}}
+                    </div>
                     <div class="form-group"> <!--이름 입력-->
                         <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                        {{form.username}}
+                        {{form.name}}
                     </div>
                     <div class="form-group"> <!--패스워드 입력-->
                         <label for="pass"><i class="zmdi zmdi-lock"></i></label>

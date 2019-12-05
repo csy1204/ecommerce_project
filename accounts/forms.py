@@ -12,7 +12,7 @@ class RegisterForm(forms.ModelForm):                                            
     classification = forms.ChoiceField(choices=CHOISES, widget=forms.Select)
     class Meta:                                                                         #기존에 있는 모델의 입력 폼
         model = User
-        fields = ['username',]
+        fields = ['username','name','pw','id']
 
     def clean_password2(self):                                                          #유효성 검사 메소드 ->password와 password2가 같은지 검사
         cd = self.cleaned_data
