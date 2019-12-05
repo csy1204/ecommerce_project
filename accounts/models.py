@@ -7,5 +7,5 @@ CHOISES=(
 )
 
 class User(AbstractUser):
-    username = models.CharField(max_length=45, blank=False, primary_key=True)
+    # username = models.CharField(max_length=45, blank=False, primary_key=True)
     classification = models.CharField(max_length=10, blank=False,choices=CHOISES)

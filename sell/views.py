@@ -8,3 +8,4 @@ class PhotoListView(LoginRequiredMixin,ListView):
     model = Sell
     template_name="selllist.html"
     
+    
