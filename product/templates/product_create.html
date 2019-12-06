@@ -3,7 +3,29 @@
 <div class="container">
     <form method="post">
         {% csrf_token %}
-        {{form.as_table}}
+     
+        <tr>
+            <td>{{ form.name }}</td>
+        </tr>
+        <tr>
+                <td>{{ form.phone_number }}</td>
+        </tr>
+        <tr>
+                <td>{{ form.trading_place}}</td>
+        </tr>
+        <tr>
+                <td>{{ form.status }}</td>
+        </tr>
+        <tr>
+                <td>{{ form.price }}</td>
+        </tr>
+        <tr>
+                <td>{{ form.image }}</td>
+        </tr>
+        <tr>
+                <td>{{ form.end_time }}</td>
+        </tr>
+        </table>
         <button type="submit" class="btn btn-success">Create</button>
     </form>
 </div>
