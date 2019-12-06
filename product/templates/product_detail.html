@@ -12,8 +12,10 @@ input
   <p>{{product.end_time}}</p>
   {% if product.status == 1 %}
     <button>Bid</button>
+  {% elif product.status == 3%}
+    <p>판매 완료</p>
   {% else %}
-    <button>Purchase</button>
+    <a href="/product/buy?id={{product.id}}"><button>Purchase</button></a>
   {% endif %}
 </div>
 {% endblock %}

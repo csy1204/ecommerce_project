@@ -40,3 +40,24 @@ def ProductCreateView(request):
         product_form = ProductForm()                                                              
 
     return render(request, 'product_create.html',{'form':product_form})
+
+
+def BuyProduct(request):
+    """
+    물건 구매
+    params: Product_id
+        Product.status을 3으로 변환
+    redirect: Product Detail
+    """
+    product = Product.objects.get(pk=request.GET.get('id',1))
+    product.status = 3
+    product.save()
+    return HttpResponseRedirect('/product/'+request.GET.get('id'))
+
+
+def BidProduct(request):
+    """
+
+    """
+    pass
+

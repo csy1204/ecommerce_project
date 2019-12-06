@@ -22,7 +22,6 @@ class Product(models.Model):
     seller = models.ForeignKey(User, default=1, on_delete=models.CASCADE, related_name="sell_list")
     wish = models.ManyToManyField(User, related_name='wish_list')
     cart = models.ManyToManyField(User, related_name='cart_list')
-    # end_tiem -> Int로 변경 (초나 분으로 변경)
     end_time = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
