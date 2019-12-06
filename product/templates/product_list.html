@@ -12,6 +12,7 @@
         <th scope="col">Status</th>
         <th scope="col">seller</th>
         <th scope="col">Created</th>
+        <th scope="col">History</th>
       </tr>
     </thead>
     <tbody>
@@ -25,6 +26,11 @@
         <td>{{ product.get_status_display }}</td>
         <td>{{ product.seller.name }}</td>
         <td>{{ product.created_at }}</td>
+        <td>
+          {% for history in product.auction_history.all %}
+            <p>{{history.price}} | {{history.bidder.name}}</p>
+          {% endfor %}
+        </td>
     </tr>
     {% endfor %}
     </tbody>

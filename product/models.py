@@ -20,10 +20,13 @@ class Product(models.Model):
     price = models.PositiveIntegerField() #default = 0 추가했었지만 placeholder 때문에 삭제
     image = models.ImageField(upload_to='img/', max_length=100, blank=True, null=True)
     seller = models.ForeignKey(User, default=1, on_delete=models.CASCADE, related_name="sell_list")
+    # 경매 낙찰자
+    winner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name="win_list")
     wish = models.ManyToManyField(User, related_name='wish_list') # us
     cart = models.ManyToManyField(User, related_name='cart_list')
     end_time = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    
 
     def __str__(self):
         """Unicode representation of Product."""
@@ -31,7 +34,7 @@ class Product(models.Model):
 
     def is_auction_end(self):
         now = timezone.localtime()
-        return now > end_time
+        return now > self.end_time
 
 
 

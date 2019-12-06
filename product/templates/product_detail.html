@@ -9,9 +9,17 @@ input
 <div class="card">
   <h2>{{product.name}}</h2>
   {{product.created_at}}
+  {{product.end_time}}
+  <p>판매가: {{product.price}}</p>
   <p>{{product.end_time}}</p>
+  <p>{{product.winner.username}}</p>
   {% if product.status == 1 %}
-    <button>Bid</button>
+  <form action="/product/bid">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{product.id}}">
+    <input type="number" name="bid_price" id="">
+    <button type="submit">Bid</button>
+  </form>
   {% elif product.status == 3%}
     <p>판매 완료</p>
   {% else %}

@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView
 from django.contrib import messages
 
 
-from .models import Product
+from .models import Product, AuctionHistory
 from django.urls import reverse_lazy
 from .forms import ProductForm
 from datetime import datetime
@@ -65,7 +65,16 @@ def BidProduct(request):
     """
 
     """
-    pass
+    bid_product = Product.objects.get(pk=request.GET.get('id',1))
+    bid_price = int(request.GET.get('bid_price'))
+# if not product.is_auction_end():
+    if bid_price  > bid_product.price:
+        bid_product.price = bid_price 
+        bid_product.winner = request.user
+        AuctionHistory.objects.create(product=bid_product, bidder=request.user, price=bid_price)
+        bid_product.save()
+    return HttpResponseRedirect('/product/'+request.GET.get('id'))
+    
 
 
 def WishList(request):
