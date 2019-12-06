@@ -15,7 +15,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=15)
     trading_place = models.TextField()
-    # Product.get_status_display()
+    # Product.get_status_display
     status = models.PositiveSmallIntegerField(choices=STATUS, default=2)
     price = models.PositiveIntegerField() #default = 0 추가했었지만 placeholder 때문에 삭제
     image = models.ImageField(upload_to='img/', max_length=100, blank=True, null=True)

@@ -1,9 +1,34 @@
 {%extends 'base.html'%}
 
 {%block content%}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Trading Place</th>
+        <th scope="col">Status</th>
+        <th scope="col">seller</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for product in product_list %}
+    <tr>
+        <th scope="row">{{ product.id }}</th>
+        <td><a href="/product/{{ product.id }}">{{ product.name }}</a></td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.phone_number }}</td>
+        <td>{{ product.trading_place }}</td>
+        <td>{{ product.get_status_display }}</td>
+        <td>{{ product.seller.name }}</td>
+        <td>{{ product.created_at }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
 
-{% for product in product_list %}
- {{ product.name }}
-{% endfor %}
 
 {%endblock%}
