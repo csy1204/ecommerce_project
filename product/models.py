@@ -17,7 +17,7 @@ class Product(models.Model):
     trading_place = models.TextField()
     # Product.get_status_display()
     status = models.PositiveSmallIntegerField(choices=STATUS, default=2)
-    price = models.PositiveIntegerField(default=0) #default = 0 추가
+    price = models.PositiveIntegerField() #default = 0 추가했었지만 placeholder 때문에 삭제
     image = models.ImageField(upload_to='img/', max_length=100, blank=True, null=True)
     seller = models.ForeignKey(User, default=1, on_delete=models.CASCADE, related_name="sell_list")
     wish = models.ManyToManyField(User, related_name='wish_list')
