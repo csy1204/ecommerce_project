@@ -20,7 +20,7 @@ class Product(models.Model):
     price = models.PositiveIntegerField(default=0) #default = 0 추가
     image = models.ImageField(upload_to='img/', max_length=100, blank=True, null=True)
     seller = models.ForeignKey(User, default=1, on_delete=models.CASCADE, related_name="sell_list")
-    wish = models.ManyToManyField(User, related_name='wish_list')
+    wish = models.ManyToManyField(User, related_name='wish_list') # us
     cart = models.ManyToManyField(User, related_name='cart_list')
     end_time = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)

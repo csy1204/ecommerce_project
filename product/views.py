@@ -61,3 +61,6 @@ def BidProduct(request):
     """
     pass
 
+
+def WishList(request):
+    pass
