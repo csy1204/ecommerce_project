@@ -23,6 +23,7 @@ input
   {% elif product.status == 3%}
     <p>판매 완료</p>
   {% else %}
+    <a href="/product/addwish?id={{product.id}}"><button>Wish</button></a>
     <a href="/product/buy?id={{product.id}}"><button>Purchase</button></a>
   {% endif %}
 </div>

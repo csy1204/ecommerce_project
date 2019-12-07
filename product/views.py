@@ -12,10 +12,12 @@ from datetime import datetime
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin       #권한 제한하는 건데 @login_required라는 decorator는 함수형 (def)뷰에서 사용 지금은 클래스 형 뷰->Mixin사용
 from accounts.models import User
+
 class ProductList(LoginRequiredMixin, ListView):
     model = Product
     context_object_name = 'product_list'
     template_name='product_list.html'
+
     def get_queryset(self):
         if self.request.user.is_buyer():
             return Product.objects.all()
@@ -63,7 +65,7 @@ def BuyProduct(request):
 
 def BidProduct(request):
     """
-
+    Bid Auction
     """
     bid_product = Product.objects.get(pk=request.GET.get('id',1))
     bid_price = int(request.GET.get('bid_price'))
@@ -76,10 +78,16 @@ def BidProduct(request):
     return HttpResponseRedirect('/product/'+request.GET.get('id'))
     
 
+def AddWish(request):
+    wish_product = Product.objects.get(pk=request.GET.get("id"))
+    if request.user not in wish_product.wish.all():
+        wish_product.wish.add(request.user)
+    return HttpResponseRedirect('/product/'+request.GET.get('id'))
+
 
 def WishList(request):
-    wish = User.objects.get(pk=request.user)
-    wlist = wish.wish_list.all()
+    cuurent_user = User.objects.get(pk=request.user)
+    wlist = cuurent_user.wish_list.all()
     return render(request, 'product_wish.html', {'wishes' :wlist})
 
 def ShoppingList(request):

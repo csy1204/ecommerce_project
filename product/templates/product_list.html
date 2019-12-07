@@ -1,6 +1,11 @@
 {%extends 'base.html'%}
 
 {%block content%}
+<form action="/product/" method="post">
+{% csrf_token %}
+<input type="number" name="price">
+<button type="submit">Search</button>
+</form>
 <table class="table">
     <thead class="thead-dark">
       <tr>
