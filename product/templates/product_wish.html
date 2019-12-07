@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<tbody>
+{%for wish in wishes%}
+<tr>
+    <th scope="row">{{ wish.id }}</th>
+    <td><a href="/product/{{ wish.id }}">{{ wish.name }}</a></td>
+</tr>
+{%endfor%}
+</tbody>
+{%endblock%}
