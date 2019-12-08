@@ -324,6 +324,7 @@ figure {
     margin-bottom: 0px; }
 
 input {
+  margin-bottom:20px !important;
   width: 100%;
   border: none;
   border-bottom: 1px solid #999;
@@ -741,6 +742,9 @@ background-repeat:no-repeat;
 background-color:none;
 }
 
+#id_status option :nth-child(3){
+  display:none;
+}
 /* 
 =================================
 --------- Media Query -----------
