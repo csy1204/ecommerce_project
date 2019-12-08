@@ -173,10 +173,18 @@ img {
 figure {
   margin: 0; }
 
+#create{
+  text-align:center;
+  font-size:25px;
+  padding-left:100px;
+  padding-right:100px;
+}
+
 p {
   margin-bottom: 0px;
-  font-size: 15px;
-  color: #777; }
+  font-size: 25px;
+  color: #777;
+ }
 
 h2 {
   line-height: 1.66;
@@ -723,7 +731,7 @@ select#id_classification:hover {
 }
 
 select#id_status{
-  width:260px;
+  width:350px;
   border:none;
   margin-left:10px;
   color: #807cb9;
@@ -740,9 +748,7 @@ background-size:23px;
 background-repeat:no-repeat;
 background-color:none;
 }
-#id_status option:nth-child(3){
-  display: none;
-}
+
 /* 
 =================================
 --------- Media Query -----------
@@ -795,4 +801,5 @@ background-color:none;
     font-family: "Open Sans", sans-serif;
   }
 }
+
 
