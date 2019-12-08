@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<tbody>
+{%for cart_item in carts%}
+<tr>
+    <th scope="row">{{ cart_item.id }}</th>
+    <td><a href="/product/{{ cart_item.id }}">{{ cart_item.name }}</a></td>
+</tr>
+{%endfor%}
+</tbody>
+{%endblock%}

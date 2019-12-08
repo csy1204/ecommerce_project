@@ -43,11 +43,12 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
 def ProductCreateView(request):
     if request.method == 'POST':                                                          
         product_form = ProductForm(request.POST)
-        print(request.POST['price'])
-        messages.error(request, '입력이 잘못되었습니다.')
-        product_form = ProductForm()
-        return render(request, 'product_create.html',{'form':product_form})                                   
+        print(request.POST['price'], request.POST['status'])
+        if int(request.POST['price']) == 0 and int(request.POST['status'])==2:
+            messages.error(request, '입력이 잘못되었습니다.')
+            return render(request, 'product_create.html',{'form':product_form})                                   
         if product_form.is_valid():
+            print("!!")
             new_product = product_form.save(commit=False)                                             #commit=False -> 데이터베이스에 넘기지 않음 객체만 만들어짐
             new_product.seller = request.user 
             # naive datetime -> UTC +9:00 으로 변환                    
@@ -95,6 +96,11 @@ def AddWish(request):
         wish_product.wish.add(request.user)
     return HttpResponseRedirect('/product/'+request.GET.get('id'))
 
+def AddCart(request):
+    cart_product = Product.objects.get(pk=request.GET.get("id"))
+    if request.user not in cart_product.cart.all():
+        cart_product.cart.add(request.user)
+    return HttpResponseRedirect('/product/'+request.GET.get('id'))
 
 def WishList(request):
     cuurent_user = User.objects.get(pk=request.user)
@@ -102,4 +108,15 @@ def WishList(request):
     return render(request, 'product_wish.html', {'wishes' :wlist})
 
 def ShoppingList(request):
-    pass
+    cuurent_user = User.objects.get(pk=request.user)
+    clist = cuurent_user.cart_list.all()
+    auction_products = Product.objects.filter(winner=request.user, end_time__lte=timezone.localtime())
+    clist = clist | auction_products
+    return render(request, 'product_shopping.html', {'carts' :clist})
+
+
+def BuyAllProduct(request):
+    # Multiple Input 추가 및 코드 수정 필요
+    product = Product.objects.get(pk=request.GET.get('id',1))
+    product.status = 3
+    product.save()

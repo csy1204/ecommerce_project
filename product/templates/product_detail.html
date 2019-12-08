@@ -13,17 +13,21 @@ input
   <p>판매가: {{product.price}}</p>
   <p>{{product.end_time}}</p>
   <p>{{product.winner.username}}</p>
-  {% if product.status == 1 %}
+  {% if product.status == 1 and product.is_auction_end  %}
+  <p>옥션 종료</p>
+  {% elif product.status == 1 %}
   <form action="/product/bid">
     {% csrf_token %}
     <input type="hidden" name="id" value="{{product.id}}">
     <input type="number" name="bid_price" id="">
     <button type="submit">Bid</button>
   </form>
+  <a href="/product/addwish?id={{product.id}}"><button>Wish</button></a>
   {% elif product.status == 3%}
     <p>판매 완료</p>
   {% else %}
     <a href="/product/addwish?id={{product.id}}"><button>Wish</button></a>
+    <a href="/product/addcart?id={{product.id}}"><button>Cart</button></a>
     <a href="/product/buy?id={{product.id}}"><button>Purchase</button></a>
   {% endif %}
 </div>

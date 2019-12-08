@@ -10,5 +10,7 @@ urlpatterns = [
     path('bid/', views.BidProduct, name="product-bid"),
     path('addwish/', views.AddWish, name='add-wish'),
     path('wish/', views.WishList, name='wish'),
+    path('addcart/', views.AddCart, name='add-cart'),
     path('shopping/',views.ShoppingList, name='shopping'),
+    path('buyall/',views.BuyAllProduct, name='buyall'),
 ]
