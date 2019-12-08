@@ -13,16 +13,27 @@ from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin       #권한 제한하는 건데 @login_required라는 decorator는 함수형 (def)뷰에서 사용 지금은 클래스 형 뷰->Mixin사용
 from accounts.models import User
 
-class ProductList(LoginRequiredMixin, ListView):
-    model = Product
-    context_object_name = 'product_list'
-    template_name='product_list.html'
+# class ProductList(LoginRequiredMixin, ListView):
+#     model = Product
+#     context_object_name = 'product_list'
+#     template_name='product_list.html'
+#     def get_queryset(self):
+#         if self.request.user.is_buyer():
+#             return Product.objects.all()
+#         # 현재 접속자가 Seller인 경우 본인 판매 물건만
+#         return Product.objects.filter(seller=self.request.user)
 
-    def get_queryset(self):
-        if self.request.user.is_buyer():
-            return Product.objects.all()
+def ProductList(request):
+    if request.method == "GET":
+        product_list= Product.objects.all() if request.user.is_buyer() else Product.objects.filter(seller=request.user)
         # 현재 접속자가 Seller인 경우 본인 판매 물건만
-        return Product.objects.filter(seller=self.request.user)
+    else:
+        # Seller name, Product name, hope price,
+        filter_params = {key: value for key, value in request.POST.items() if key != 'csrfmiddlewaretoken' and value}
+        product_list= Product.objects.filter(**filter_params)
+        print(filter_params, product_list)
+
+    return render(request, 'product_list.html', {"product_list": product_list} )
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
