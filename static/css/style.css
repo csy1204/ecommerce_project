@@ -740,7 +740,9 @@ background-size:23px;
 background-repeat:no-repeat;
 background-color:none;
 }
-
+#id_status option:nth-child(3){
+  display: none;
+}
 /* 
 =================================
 --------- Media Query -----------
