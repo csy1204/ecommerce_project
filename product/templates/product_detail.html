@@ -3,6 +3,7 @@
 {% block content %}
 <div class="card">
   <h2>{{product.name}}</h2>
+  <p> <img src="{{product.image.url}}" style="width:300px;"></p>
   {{product.created_at}}
   {{product.end_time}}
   <p>판매가: {{product.price}}</p>
