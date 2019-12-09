@@ -12,6 +12,8 @@
 {%endfor%}
 </table>
 <br>
+<h4>전체 갯수: {{ carts |  length }}</h4>
+<h4>전체 금액: {{ sum }}</h4>
 <button type="submit" class="btn btn-success">모두 구매</button>
 </form>
 </tbody>

@@ -13,16 +13,6 @@ from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin       #권한 제한하는 건데 @login_required라는 decorator는 함수형 (def)뷰에서 사용 지금은 클래스 형 뷰->Mixin사용
 from accounts.models import User
 
-# class ProductList(LoginRequiredMixin, ListView):
-#     model = Product
-#     context_object_name = 'product_list'
-#     template_name='product_list.html'
-#     def get_queryset(self):
-#         if self.request.user.is_buyer():
-#             return Product.objects.all()
-#         # 현재 접속자가 Seller인 경우 본인 판매 물건만
-#         return Product.objects.filter(seller=self.request.user)
-
 def ProductList(request):
     if request.method == "GET":
         product_list= Product.objects.all() if request.user.is_buyer() else Product.objects.filter(seller=request.user)
@@ -63,22 +53,6 @@ def ProductCreateView(request):
 
 
 def ProductUpdateView(request, pk):
-    # if request.method == 'POST':                                                          
-    #     product_form = ProductForm(request.POST)
-    #     print(request.POST['price'], request.POST['status'])
-    #     if int(request.POST['price']) == 0 and int(request.POST['status'])==2:
-    #         messages.error(request, '입력이 잘못되었습니다.')
-    #         return render(request, 'product_create.html',{'form':product_form})                                   
-    #     if product_form.is_valid():
-    #         print("!!")
-    #         new_product = product_form.save(commit=False)                                             #commit=False -> 데이터베이스에 넘기지 않음 객체만 만들어짐
-    #         new_product.seller = request.user 
-    #         # naive datetime -> UTC +9:00 으로 변환                    
-    #         new_product.end_time = timezone.make_aware(datetime.strptime(request.POST['end_time'], "%Y/%m/%d %H:%M"))
-    #         new_product.save()                 
-    #         return HttpResponseRedirect('/product') 
-    # else:
-    #     product_form = ProductForm()
     product = get_object_or_404(Product, pk=pk)
     form = ProductForm(request.POST or None, instance=product)
     print(pk, form)
@@ -147,7 +121,9 @@ def ShoppingList(request):
     auction_products = Product.objects.filter(status=1, winner=request.user, end_time__lte=timezone.localtime())
     clist = clist | auction_products
 
-    return render(request, 'product_shopping.html', {'carts' :clist})
+    price_sum = sum([p.price for p in clist])
+
+    return render(request, 'product_shopping.html', {'carts' :clist, 'sum': price_sum, })
 
 
 def BuyAllProduct(request):
