@@ -143,8 +143,8 @@ def WishList(request):
 
 def ShoppingList(request):
     cuurent_user = User.objects.get(pk=request.user)
-    clist = cuurent_user.cart_list.all()
-    auction_products = Product.objects.filter(winner=request.user, end_time__lte=timezone.localtime())
+    clist = cuurent_user.cart_list.filter(status=2)
+    auction_products = Product.objects.filter(status=1, winner=request.user, end_time__lte=timezone.localtime())
     clist = clist | auction_products
 
     return render(request, 'product_shopping.html', {'carts' :clist})
@@ -152,6 +152,12 @@ def ShoppingList(request):
 
 def BuyAllProduct(request):
     # Multiple Input 추가 및 코드 수정 필요
-    product = Product.objects.get(pk=request.GET.get('id',1))
-    product.status = 3
-    product.save()
+    print(request.GET, request.GET.getlist('idList[]'))
+    if request.GET.get('idList[]'):
+        for idx in request.GET.getlist('idList[]'):
+            product = Product.objects.get(pk=int(idx))
+            product.cart.remove(request.user)
+            product.status = 3
+            product.save()
+
+    return redirect('/product/shopping/')

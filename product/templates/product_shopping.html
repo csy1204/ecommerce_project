@@ -1,12 +1,18 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<tbody>
+<form action="/product/buyall" method="get">
+<table>
 {%for cart_item in carts%}
 <tr>
     <th scope="row">{{ cart_item.id }}</th>
     <td><a href="/product/{{ cart_item.id }}">{{ cart_item.name }}</a></td>
+    <input type="hidden" value="{{ cart_item.id }}" name="idList[]">
 </tr>
 {%endfor%}
+</table>
+<br>
+<button type="submit" class="btn btn-success">모두 구매</button>
+</form>
 </tbody>
 {%endblock%}
