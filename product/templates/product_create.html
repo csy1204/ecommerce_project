@@ -9,6 +9,7 @@
   {% endfor %}
 {% endif %}
 <div class="container">
+        <div id="create">
     <form method="post">
         {% csrf_token %}
      
@@ -22,7 +23,7 @@
                 <td>{{ form.trading_place}}</td>
         </tr>
         <tr>
-                <td>{{ form.status }}</td>
+                <td><p>Select Type of Transaction {{ form.status }} </p></td>
         </tr>
         <tr>
                 <td>{{ form.price }}</td>
@@ -34,10 +35,13 @@
                 <td>{{ form.end_time }}</td>
         </tr>
         </table>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="form-submit" style="border-style:none;"> Submit</button>
     </form>
+</div>
 </div>
 <script>
    $("#id_end_time").datetimepicker({format: 'Y/m/d H:i'});
 </script>
 {%endblock%}
+
+

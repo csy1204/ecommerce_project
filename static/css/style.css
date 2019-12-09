@@ -173,10 +173,18 @@ img {
 figure {
   margin: 0; }
 
+#create{
+  text-align:center;
+  font-size:25px;
+  padding-left:100px;
+  padding-right:100px;
+}
+
 p {
   margin-bottom: 0px;
-  font-size: 15px;
-  color: #777; }
+  font-size: 25px;
+  color: #777;
+ }
 
 h2 {
   line-height: 1.66;
@@ -324,6 +332,7 @@ figure {
     margin-bottom: 0px; }
 
 input {
+  margin-bottom:20px;
   width: 100%;
   border: none;
   border-bottom: 1px solid #999;
@@ -723,7 +732,7 @@ select#id_classification:hover {
 }
 
 select#id_status{
-  width:260px;
+  width:350px;
   border:none;
   margin-left:10px;
   color: #807cb9;
@@ -739,6 +748,10 @@ background-position:right;
 background-size:23px;
 background-repeat:no-repeat;
 background-color:none;
+}
+
+#id_status option:nth-child(3){
+  display:none;
 }
 
 /* 
@@ -793,4 +806,5 @@ background-color:none;
     font-family: "Open Sans", sans-serif;
   }
 }
+
 
