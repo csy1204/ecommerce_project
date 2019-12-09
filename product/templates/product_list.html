@@ -34,6 +34,9 @@
         <th scope="col">seller</th>
         <th scope="col">Created</th>
         <th scope="col">History</th>
+        {% if request.user.is_seller %}
+        <th scope="col">Manage</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -52,6 +55,12 @@
             <p>{{history.price}} | {{history.bidder.name}}</p>
           {% endfor %}
         </td>
+        {% if request.user.is_seller%}
+        <td>
+          <a  href="{% url 'product-update' product.id  %}">edit</a>
+          <a  href="{% url 'product-delete'  product.id  %}">delete</a>
+        </td>
+        {% endif %}
     </tr>
     {% endfor %}
     </tbody>

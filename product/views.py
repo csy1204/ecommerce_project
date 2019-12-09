@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import ListView, DetailView, DeleteView
 from django.views.generic.edit import CreateView
 from django.contrib import messages
 
@@ -62,6 +62,40 @@ def ProductCreateView(request):
     return render(request, 'product_create.html',{'form':product_form})
 
 
+def ProductUpdateView(request, pk):
+    # if request.method == 'POST':                                                          
+    #     product_form = ProductForm(request.POST)
+    #     print(request.POST['price'], request.POST['status'])
+    #     if int(request.POST['price']) == 0 and int(request.POST['status'])==2:
+    #         messages.error(request, '입력이 잘못되었습니다.')
+    #         return render(request, 'product_create.html',{'form':product_form})                                   
+    #     if product_form.is_valid():
+    #         print("!!")
+    #         new_product = product_form.save(commit=False)                                             #commit=False -> 데이터베이스에 넘기지 않음 객체만 만들어짐
+    #         new_product.seller = request.user 
+    #         # naive datetime -> UTC +9:00 으로 변환                    
+    #         new_product.end_time = timezone.make_aware(datetime.strptime(request.POST['end_time'], "%Y/%m/%d %H:%M"))
+    #         new_product.save()                 
+    #         return HttpResponseRedirect('/product') 
+    # else:
+    #     product_form = ProductForm()
+    product = get_object_or_404(Product, pk=pk)
+    form = ProductForm(request.POST or None, instance=product)
+    print(pk, form)
+    if form.is_valid():
+        print("valid")
+        u_product = form.save(commit=False)
+        u_product.end_time = timezone.make_aware(datetime.strptime(request.POST['end_time'], "%Y/%m/%d %H:%M"))
+        u_product.save()
+        return redirect('/product/{}'.format(pk))
+    print("not Valid")
+    return render(request, 'product_create.html', {'form':form})
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'product-delete.html'
+    success_url = reverse_lazy('products')
+
 def BuyProduct(request):
     """
     물건 구매
@@ -112,6 +146,7 @@ def ShoppingList(request):
     clist = cuurent_user.cart_list.all()
     auction_products = Product.objects.filter(winner=request.user, end_time__lte=timezone.localtime())
     clist = clist | auction_products
+
     return render(request, 'product_shopping.html', {'carts' :clist})
 
 
