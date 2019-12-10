@@ -1,12 +1,28 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<tbody>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col">History</th>
+        </tr>
+    </thead>
 {%for wish in wishes%}
 <tr>
-    <th scope="row">{{ wish.id }}</th>
+    <td scope="row">{{ wish.id }}</td>
     <td><a href="/product/{{ wish.id }}">{{ wish.name }}</a></td>
+    <td><img src="{{wish.image.url}}" style="width:150px"></td>
+    <td>{{wish.price}}</td>
+    <td>{{wish.get_status_display}}</td>
+    {% for history in wish.auction_history.all %}
+        <p>{{history.price}}|{{history.bidder.name}}</p>
+    {% endfor %}
 </tr>
 {%endfor%}
-</tbody>
+</table>
 {%endblock%}

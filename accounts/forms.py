@@ -10,6 +10,13 @@ class RegisterForm(forms.ModelForm):                                            
     password = forms.CharField(label='Password', widget=forms.PasswordInput)            #password-> Meta class 안 fields에서 설정가능하지만 CharField이기 때문에 widget옵션을사용해 지정
     password2 = forms.CharField(label='Repeat Password', widget=forms.PasswordInput)
     classification = forms.ChoiceField(choices=CHOISES, widget=forms.Select)
+    
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs['placeholder']="Your Name"
+        self.fields['password'].widget.attrs['placeholder']="Password"
+        self.fields['password2'].widget.attrs['placeholder']="Repeat Password"
+
     class Meta:                                                                         #기존에 있는 모델의 입력 폼
         model = User
         fields = ['username','name','pw','id']
