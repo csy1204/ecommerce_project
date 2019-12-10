@@ -15,7 +15,13 @@
 <tr>
         <td scope="row">{{ cart_item.id }}</td>
         <td><a href="/product/{{ cart_item.id }}">{{ cart_item.name }}</a></td>
-        <td><img src="{{cart_item.image.url}}" style="width:150px"></td>
+        <td>
+            {% if cart_item.image %}
+            <img src="{{cart_item.image.url}}" style="width:150px">
+            {% else %}
+            <img src="https://loremflickr.com/320/240/cat" style="width:150px">
+            {% endif %}
+        </td>
         <td>{{cart_item.price}}</td>
         <input type="hidden" value="{{ cart_item.id }}" name="idList[]">
 </tr>
