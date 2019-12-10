@@ -1,5 +1,4 @@
 
-
 /* @extend display-flex; */
 display-flex, .display-flex, .display-flex-center, .signup-content, .signin-content, .social-login, .socials {
   display: flex;
@@ -192,7 +191,7 @@ h2 {
   padding: 0;
   font-weight: bold;
   color: #222;
-  font-family: Poppins;
+  font-family: Poppins, 'Nanum Gothic', sans-serif;
   font-size: 44px; }
 
 .main {
@@ -208,7 +207,7 @@ body {
   color: #222;
   background: #f8f8f8;
   font-weight: 400;
-  font-family: Poppins;
+  font-family: Poppins,'Nanum Gothic', sans-serif;
 }
 /*
 .container {
@@ -337,7 +336,7 @@ input {
   border: none;
   border-bottom: 1px solid #999;
   padding: 6px 30px;
-  font-family: Poppins;
+  font-family: Poppins, 'Nanum Gothic', sans-serif;
   box-sizing: border-box; }
   input::-webkit-input-placeholder {
     color: #999; }
@@ -348,7 +347,13 @@ input {
   input:-moz-placeholder {
     color: #999; }
   input:focus {
-    border-bottom: 1px solid #222; }
+    border-bottom: 1px solid #222;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+     }
     input:focus::-webkit-input-placeholder {
       color: #222; }
     input:focus::-moz-placeholder {
