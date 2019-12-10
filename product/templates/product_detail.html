@@ -1,13 +1,13 @@
 {%extends 'base.html'%}
 
 {% block content %}
-<div class="card">
-  <h2>{{product.name}}</h2>
-  <p> <img src="{{product.image.url}}" style="width:300px;"></p>
+<div class="card" text align="center">
+  <h2 style="margin-bottom:30px;">{{product.name}}</h2>
+  <p> <img src="{{product.image.url}}" style="width:300px; margin-bottom:30px;"></p>
   <p>상품 등록 시간 : {{product.created_at}} <br></p>
   <p>옥션 마감 시간 : {{product.end_time}}<br></p>
   <p>판매가: {{product.price}}</p>
-  <p>상품 최종 구매자 : {{product.winner.username}}</p>
+  <p>상품 최종 구매자 : {{product.winner.username}}</p><Br>
   {% if product.status == 1 and product.is_auction_end  %}
   <p>옥션 종료</p>
   {% elif product.status == 1 %}
@@ -21,9 +21,10 @@
   {% elif product.status == 3%}
     <p>판매 완료</p>
   {% else %}
-    <a href="/product/addwish?id={{product.id}}" class="form-submit" style="width:150px; text-align:center">Wish</a>
-    <a href="/product/addcart?id={{product.id}}" class="form-submit" style="width:150px; text-align:center">Cart</a>
-    <a href="/product/buy?id={{product.id}}" class="form-submit" style="width:250px; text-align:center">Purchase</a>
+    <a href="/product/addwish?id={{product.id}}" class="form-submit" style="width:150px; margin:auto;">Wish</a><br>
+    <a href="/product/addcart?id={{product.id}}" class="form-submit" style="width:150px; margin:auto;">Cart</a><br>
+    <a href="/product/buy?id={{product.id}}" class="form-submit" style="width:250px; margin:auto;">Purchase</a><br>
   {% endif %}
 </div>
 {% endblock %}
+
