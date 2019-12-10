@@ -17,7 +17,7 @@
     {% csrf_token %}
     <input type="hidden" name="id" value="{{product.id}}">
     <button type="submit" id="bid" style="margin-bottom:45px;">Bid</button><Br>
-    <input type="number" name="bid_price" style="width:150px;">
+    <input type="number" name="bid_price" style="width:150px;" placeholder="금액 입력">
     </form>
     </th>
   <th><a href="/product/addwish?id={{product.id}}" id="wish" >Wish</a></th>

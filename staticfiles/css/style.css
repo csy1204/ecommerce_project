@@ -761,6 +761,7 @@ background-color:none;
 
 
 a#wish{
+  color: #77c4e3;
   text-align:center;
   display:grid;
   width:100px;
@@ -774,6 +775,7 @@ a#wish{
 }
 
 a#wish:hover {
+  color:rgba(229,57,53,0.8);
 width:100px;
 border: none;
 margin-right:10px;
@@ -781,9 +783,11 @@ background:url('../images/wishafter.png');
 background-size:70px;
 background-position:center;
 background-repeat:no-repeat;
+transition: all .2s;
 }
 
 a#cart{
+  color: #77c4e3;
   display:grid;
   width:100px;
   height:150px;
@@ -796,6 +800,7 @@ background-position:center;
 }
 
 a#cart:hover{
+  color:rgba(229,57,53,0.8);
 width:100px;
 border: none;
 margin-right:10px;
@@ -803,9 +808,11 @@ background:url('../images/cartafter.png');
 background-position:center;
 background-size:70px;
 background-repeat:no-repeat;
+transition: all .2s;
 }
 
 a#purchase{
+  color: #77c4e3;
   display:grid;
   width:100px;
   height:150px;
@@ -815,9 +822,11 @@ a#purchase{
 background-position:center;
   background-size:70px;
   background-repeat:no-repeat;
+  
 }
 
 a#purchase:hover{
+  color:rgba(229,57,53,0.8);
 width:100px;
 border: none;
 margin-right:10px;
@@ -825,8 +834,28 @@ background:url('../images/purchaseafter.png');
 background-position:center;
 background-size:70px;
 background-repeat:no-repeat;
+transition: all .2s;
+}
+#detailbutton{
+  display:grid;
+  margin:auto;
 }
 
+#bid{
+  background:None; 
+  border-style:None; 
+  color:#77c4e3;
+  font-weight:bold;
+}
+
+#bid:hover{
+  background:None; 
+  border-style:None; 
+  color:rgba(229,57,53,0.8);
+  transition: all .2s;
+  font-weight:bold;
+  text-decoration-line: underline;
+}
 /* 
 =================================
 --------- Media Query -----------
