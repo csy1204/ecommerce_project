@@ -9,10 +9,10 @@
   {% endfor %}
 {% endif %}
 <div class="container">
-        <div id="create">
-    <form method="post" enctype="multipart/form-data">
+    <div id="create">
+        <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-     
+        <h2 style="margin-bottom:40px; font-size:35px;color:rgba(229,57,53,0.8);">상품 등록하기</h2>
         <tr>
             <td>{{ form.name }}</td>
         </tr>
