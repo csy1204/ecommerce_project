@@ -4,11 +4,10 @@
 <div class="card">
   <h2>{{product.name}}</h2>
   <p> <img src="{{product.image.url}}" style="width:300px;"></p>
-  {{product.created_at}}
-  {{product.end_time}}
+  <p>상품 등록 시간 : {{product.created_at}} <br></p>
+  <p>옥션 마감 시간 : {{product.end_time}}<br></p>
   <p>판매가: {{product.price}}</p>
-  <p>{{product.end_time}}</p>
-  <p>{{product.winner.username}}</p>
+  <p>상품 최종 구매자 : {{product.winner.username}}</p>
   {% if product.status == 1 and product.is_auction_end  %}
   <p>옥션 종료</p>
   {% elif product.status == 1 %}
@@ -22,9 +21,9 @@
   {% elif product.status == 3%}
     <p>판매 완료</p>
   {% else %}
-    <a href="/product/addwish?id={{product.id}}"><button>Wish</button></a>
-    <a href="/product/addcart?id={{product.id}}"><button>Cart</button></a>
-    <a href="/product/buy?id={{product.id}}"><button>Purchase</button></a>
+    <a href="/product/addwish?id={{product.id}}" class="form-submit" style="width:150px; text-align:center">Wish</a>
+    <a href="/product/addcart?id={{product.id}}" class="form-submit" style="width:150px; text-align:center">Cart</a>
+    <a href="/product/buy?id={{product.id}}" class="form-submit" style="width:250px; text-align:center">Purchase</a>
   {% endif %}
 </div>
 {% endblock %}
