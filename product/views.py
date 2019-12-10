@@ -32,7 +32,7 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
 
 def ProductCreateView(request):
     if request.method == 'POST':                                                          
-        product_form = ProductForm(request.POST)
+        product_form = ProductForm(request.POST, request.FILES)
         print(request.POST['price'], request.POST['status'])
         if int(request.POST['price']) == 0 and int(request.POST['status'])==2:
             messages.error(request, '입력이 잘못되었습니다.')

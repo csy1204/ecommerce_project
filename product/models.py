@@ -18,7 +18,7 @@ class Product(models.Model):
     # Product.get_status_display
     status = models.PositiveSmallIntegerField(choices=STATUS, default=2)
     price = models.PositiveIntegerField() #default = 0 추가했었지만 placeholder 때문에 삭제
-    image = models.ImageField(upload_to='img/', max_length=100, blank=True, null=True)
+    image = models.ImageField(upload_to='img/',default="img/no_image.png")
     seller = models.ForeignKey(User, default=1, on_delete=models.CASCADE, related_name="sell_list")
     # 경매 낙찰자
     winner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name="win_list")
