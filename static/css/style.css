@@ -840,6 +840,22 @@ transition: all .2s;
   display:grid;
   margin:auto;
 }
+
+#bid{
+  background:None; 
+  border-style:None; 
+  color:#77c4e3;
+  font-weight:bold;
+}
+
+#bid:hover{
+  background:None; 
+  border-style:None; 
+  color:rgba(229,57,53,0.8);
+  transition: all .2s;
+  font-weight:bold;
+  text-decoration-line: underline;
+}
 /* 
 =================================
 --------- Media Query -----------

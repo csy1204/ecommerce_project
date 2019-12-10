@@ -11,19 +11,22 @@
   {% if product.status == 1 and product.is_auction_end  %}
   <p>옥션 종료</p>
   {% elif product.status == 1 %}
-  <form action="/product/bid">
+  <table style="display:grid; margin:auto;">
+    <th>
+    <form action="/product/bid">
     {% csrf_token %}
     <input type="hidden" name="id" value="{{product.id}}">
-    <input type="number" name="bid_price" id="">
-    <button type="submit">Bid</button>
-  </form>
-  <a href="/product/addwish?id={{product.id}}"><button>Wish</button></a>
+    <button type="submit" id="bid" style="margin-bottom:45px;">Bid</button><Br>
+    <input type="number" name="bid_price" style="width:150px;">
+    </form>
+    </th>
+  <th><a href="/product/addwish?id={{product.id}}" id="wish" >Wish</a></th>
+  </table>
   {% elif product.status == 3%}
     <p>판매 완료</p>
   {% else %}
   <div id="detailbutton">
   <table>
-
   <th>
     <a href="/product/addwish?id={{product.id}}" id="wish" >Wish</a>
   </th>
