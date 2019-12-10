@@ -534,7 +534,7 @@ label.valid {
   margin-right: 20px;
   margin-top: 10px; }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1500px) {
   .container {
     width: calc( 100% - 30px);
     max-width: 100%; } 
@@ -543,9 +543,9 @@ label.valid {
     max-width: 100%; } }
 @media screen and (min-width: 1024px) {
   .container {
-    max-width: 1200px; } 
+    max-width: 1500px; } 
     .box {
-      max-width: 1200px; } }
+      max-width: 1500px; } }
 @media screen and (max-width: 768px) {
   .signup-content, .signin-content {
     flex-direction: column;
