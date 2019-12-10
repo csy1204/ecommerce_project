@@ -1,8 +1,8 @@
 {%extends 'base.html'%}
 
 {% block content %}
-<div class="card" text align="center">
-  <h2 style="margin-bottom:30px;">{{product.name}}</h2>
+<div class="card" style="text-align:center;">
+  <h2 style="margin-bottom:30px; color:rgba(229,57,53,0.8);">{{product.name}}</h2>
   <p> <img src="{{product.image.url}}" style="width:300px; margin-bottom:30px;"></p>
   <p>상품 등록 시간 : {{product.created_at}} <br></p>
   <p>옥션 마감 시간 : {{product.end_time}}<br></p>
@@ -21,9 +21,21 @@
   {% elif product.status == 3%}
     <p>판매 완료</p>
   {% else %}
-    <a href="/product/addwish?id={{product.id}}" class="form-submit" style="width:150px; margin:auto;">Wish</a><br>
-    <a href="/product/addcart?id={{product.id}}" class="form-submit" style="width:150px; margin:auto;">Cart</a><br>
-    <a href="/product/buy?id={{product.id}}" class="form-submit" style="width:250px; margin:auto;">Purchase</a><br>
+  <div id="detailbutton">
+  <table>
+
+  <th>
+    <a href="/product/addwish?id={{product.id}}" id="wish" >Wish</a>
+  </th>
+  <th>
+    <a href="/product/addcart?id={{product.id}}" id="cart" >Cart</a>
+  </th>
+  <th>
+    <a href="/product/buy?id={{product.id}}" id="purchase" >Purchase</a>
+  </th>
+
+  </table>
+  </div>
   {% endif %}
 </div>
 {% endblock %}
