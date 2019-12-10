@@ -3,7 +3,12 @@
 {% block content %}
 <div class="card" style="text-align:center;">
   <h2 style="margin-bottom:30px; color:rgba(229,57,53,0.8);">{{product.name}}</h2>
-  <p> <img src="{{product.image.url}}" style="width:300px; margin-bottom:30px;"></p>
+  <p>
+      {% if prodcut.image %}
+      <img src="{{prodcut.image.url}}" style="width:300px; margin-bottom:30px;">
+      {% else %}
+      <img src="https://loremflickr.com/320/240/cat" style="width:300px; margin-bottom:30px;">
+      {% endif %}
   <p>상품 등록 시간 : {{product.created_at}} <br></p>
   <p>옥션 마감 시간 : {{product.end_time}}<br></p>
   <p>판매가: {{product.price}}</p>
