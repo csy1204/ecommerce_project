@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 
 {% block content %}
-<div class="card" style="text-align:center;">
+<div style="text-align:center;">
   <h2 style="margin-bottom:30px; color:rgba(229,57,53,0.8);">{{product.name}}</h2>
   <p>
       {% if prodcut.image %}
@@ -16,7 +16,7 @@
   {% if product.status == 1 and product.is_auction_end  %}
   <p>옥션 종료</p>
   {% elif product.status == 1 %}
-  <table style="display:grid; margin:auto;">
+  <table style="display:grid; margin:auto; ">
     <th>
     <form action="/product/bid">
     {% csrf_token %}
@@ -31,13 +31,13 @@
     <p>판매 완료</p>
   {% else %}
   <div id="detailbutton">
-  <table>
+  <table style="margin:auto;">
   <th>
     <a href="/product/addwish?id={{product.id}}" id="wish" >Wish</a>
   </th>
   <th>
     <a href="/product/addcart?id={{product.id}}" id="cart" >Cart</a>
-  </th>
+  </th >
   <th>
     <a href="/product/buy?id={{product.id}}" id="purchase" >Purchase</a>
   </th>

@@ -660,7 +660,7 @@ label.valid {
   padding-top: 80px;
 }
 
-.card{
+.cardc{
   margin-left:25px;
   margin-right:25px;
   margin-top:50px;
@@ -932,7 +932,7 @@ background-repeat:no-repeat;
 transition: all .2s;
 }
 #detailbutton{
-  display:grid;
+  text-align:center;
   margin:auto;
 }
 
