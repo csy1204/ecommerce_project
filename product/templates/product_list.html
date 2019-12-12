@@ -6,17 +6,27 @@
 <h2 style="margin-bottom:40px; font-size:35px; text-align:center; color:rgba(229,57,53,0.8);">전체 상품 목록</h2>
 <form action="/product/" method="post" style="margin-bottom:30px;">
 {% csrf_token %}
-<p style="text-align:center;margin-bottom:30px;"> Search what you want!<button class="btn btn-primary" style="margin-left:30px;">검색</button><br></p>
-<div class="input-group mb-2" style="width:80%; margin:auto;">
+<p style="text-align:center;margin-bottom:30px; "> Search what you want!<br></p>
+<table style="margin:auto; width:800px;">
+<tr>
+  <td >
+    <div class="input-group mb-2" style="width:80%; margin:auto;">
     <input placeholder="상품명" type="text" name="name__icontains" class="form-control" id="inputPassword4">
     <input placeholder="판매자 이름" type="text" name="seller__name__icontains" class="form-control" id="inputSeller">
-</div>
-
-<div class="input-group mb-2" style="width:80%; margin:auto;">
+    </div>
+  </td>
+  <td> </td>
+</tr>
+<tr>
+  <td>
+  <div class="input-group mb-2" style="width:80%; margin:auto;">
   <input placeholder="최소 가격" type="number" name="price__gte" class="form-control" id="inputGnum">
   <input placeholder="최대 가격" type="number" name="price__lte" class="form-control" id="inputLnum">
-</div>
-
+  </div>
+  </td>
+<td><button class="btn btn-primary" style=" margin: 0px 0px px -1px;" >검색</button></td>
+</tr>
+</table>
 </form>
 {% endif %}
 
@@ -29,7 +39,7 @@
         <th scope="col">Phone Number</th>
         <th scope="col">Trading Place</th>
         <th scope="col">Status</th>
-        <th scope="col">seller</th>
+        <th scope="col">Seller</th>
         <th scope="col">Created</th>
         <th scope="col">History</th>
         {% if request.user.is_seller %}
@@ -41,7 +51,7 @@
     {% for product in product_list %}
     <tr>
         <th scope="row">{{ product.id }}</th>
-        <td><a href="/product/{{ product.id }}">{{ product.name }}</a></td>
+        <td><a href="/product/{{ product.id }}" id="proname">{{ product.name }}</a></td>
         <td>{{ product.price }}</td>
         <td>{{ product.phone_number }}</td>
         <td>{{ product.trading_place }}</td>
@@ -50,7 +60,7 @@
         <td>{{ product.created_at }}</td>
         <td>
           {% for history in product.auction_history.all %}
-            <p>{{history.price}} | {{history.bidder.name}}</p>
+            <p style="font-size:20px;">{{history.price}} | {{history.bidder.name}}</p>
           {% endfor %}
         </td>
         {% if request.user.is_seller%}
