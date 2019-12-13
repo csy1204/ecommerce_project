@@ -11,8 +11,9 @@ from .forms import ProductForm
 from datetime import datetime
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin       #권한 제한하는 건데 @login_required라는 decorator는 함수형 (def)뷰에서 사용 지금은 클래스 형 뷰->Mixin사용
+from django.contrib.auth.decorators import login_required
 from accounts.models import User
-
+@login_required
 def ProductList(request):
     if request.method == "GET":
         product_list= Product.objects.all() if request.user.is_buyer() else Product.objects.filter(seller=request.user)
@@ -29,7 +30,7 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
     context_object_name = 'product'
     template_name='product_detail.html'
-
+@login_required
 def ProductCreateView(request):
     if request.method == 'POST':                                                          
         product_form = ProductForm(request.POST, request.FILES)
@@ -51,7 +52,7 @@ def ProductCreateView(request):
 
     return render(request, 'product_create.html',{'form':product_form})
 
-
+@login_required
 def ProductUpdateView(request, pk):
     product = get_object_or_404(Product, pk=pk)
     form = ProductForm(request.POST or None, instance=product)
@@ -65,11 +66,11 @@ def ProductUpdateView(request, pk):
     print("not Valid")
     return render(request, 'product_create.html', {'form':form})
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     template_name = 'product-delete.html'
     success_url = reverse_lazy('products')
-
+@login_required
 def BuyProduct(request):
     """
     물건 구매
@@ -82,7 +83,7 @@ def BuyProduct(request):
     product.save()
     return HttpResponseRedirect('/product/'+request.GET.get('id'))
 
-
+@login_required
 def BidProduct(request):
     """
     Bid Auction
@@ -97,24 +98,24 @@ def BidProduct(request):
         bid_product.save()
     return HttpResponseRedirect('/product/'+request.GET.get('id'))
     
-
+@login_required
 def AddWish(request):
     wish_product = Product.objects.get(pk=request.GET.get("id"))
     if request.user not in wish_product.wish.all():
         wish_product.wish.add(request.user)
     return HttpResponseRedirect('/product/'+request.GET.get('id'))
-
+@login_required
 def AddCart(request):
     cart_product = Product.objects.get(pk=request.GET.get("id"))
     if request.user not in cart_product.cart.all():
         cart_product.cart.add(request.user)
     return HttpResponseRedirect('/product/'+request.GET.get('id'))
-
+@login_required
 def WishList(request):
     cuurent_user = User.objects.get(pk=request.user)
     wlist = cuurent_user.wish_list.all()
     return render(request, 'product_wish.html', {'wishes' :wlist})
-
+@login_required
 def ShoppingList(request):
     cuurent_user = User.objects.get(pk=request.user)
     clist = cuurent_user.cart_list.filter(status=2)
@@ -125,7 +126,7 @@ def ShoppingList(request):
 
     return render(request, 'product_shopping.html', {'carts' :clist, 'sum': price_sum, })
 
-
+@login_required
 def BuyAllProduct(request):
     # Multiple Input 추가 및 코드 수정 필요
     print(request.GET, request.GET.getlist('idList[]'))
