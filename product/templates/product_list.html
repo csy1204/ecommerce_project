@@ -7,37 +7,29 @@
 <form action="/" method="post" style="margin-bottom:30px;">
 {% csrf_token %}
 <p style="text-align:center;margin-bottom:30px; "> Search what you want!<br></p>
-<table style="margin:auto; width:800px;">
-<tr>
-  <td >
-    <div class="input-group mb-2" style="width:80%; margin:auto;">
+  <div style="margin-left:350px">
+  <div class="input-group mb-2" style="width:700px;">
     <input placeholder="상품명" type="text" name="name__icontains" class="form-control" id="inputPassword4">
     <input placeholder="판매자 이름" type="text" name="seller__name__icontains" class="form-control" id="inputSeller">
     </div>
-  </td>
-  <td> </td>
-</tr>
-<tr>
-  <td>
-  <div class="input-group mb-2" style="width:80%; margin:auto;">
+  <div style=" display:flex">
+  <div class="input-group mb-2" style="width:700px;">
   <input placeholder="최소 가격" type="number" name="price__gte" class="form-control" id="inputGnum">
   <input placeholder="최대 가격" type="number" name="price__lte" class="form-control" id="inputLnum">
   </div>
-  </td>
-<td><button class="btn btn-primary" style=" margin: 0px 0px px -1px;" >검색</button></td>
-</tr>
-</table>
+  <button class="btn btn-primary" style="margin-left:50px;"  >검색</button>
+</div>
+</div>
 </form>
 {% endif %}
 
 <table class="table">
-    <thead class="thead-dark">
-      <tr>
+    <thead class="thead-dark" >
+      <tr style="border-radius:10px;">
         <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Price</th>
-        <th scope="col">Phone Number</th>
-        <th scope="col">Trading Place</th>
+        <th scope="col">Trading<Br> Place</th>
         <th scope="col">Status</th>
         <th scope="col">Seller</th>
         <th scope="col">Created</th>
@@ -52,15 +44,14 @@
     <tr>
         <th scope="row">{{ product.id }}</th>
         <td><a href="/{{ product.id }}" id="proname">{{ product.name }}</a></td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.phone_number }}</td>
+        <td>{{ product.price }} won</td>
         <td>{{ product.trading_place }}</td>
-        <td>{{ product.get_status_display }}</td>
+        <td style="width:180px;">{{ product.get_status_display }}</td>
         <td>{{ product.seller.name }}</td>
         <td>{{ product.created_at }}</td>
         <td>
           {% for history in product.auction_history.all %}
-            <p style="font-size:20px;">{{history.price}} | {{history.bidder.name}}</p>
+            <p style="font-size:20px;"><span class="highlight">{{history.bidder.name}}</span> bids <span class="highlight">{{history.price}}</span> won.</p>
           {% endfor %}
         </td>
         {% if request.user.is_seller%}

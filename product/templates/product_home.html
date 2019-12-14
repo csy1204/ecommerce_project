@@ -12,18 +12,13 @@
     {% if user.is_anonymous %}
     <p style="letter-spacing: 3.5px;">Login and be our member.</p><Br>
     {% endif %}
-<table style="margin:auto; font-family : 'Nanum Gothic', sans-serif;">
-<tr>
-    <td>
+<div style="display:flex; font-family : 'Nanum Gothic', sans-serif; justify-content: center;">
+
 <div class="cardc"><figure><img src="{%static 'images/first.png'%}"></figure>Sell your product.<br> Choose the type of your transaction.</div>
-</td>
-<td>
+
 <div class="cardc"><figure><img src="{%static 'images/second.png'%}"></figure>Buy other's products.<br> Search for the products by price and product name.</div>
-</td>
-<td>
+
 <div class="cardc"><figure><img src="{%static 'images/third.png'%}"></figure>Bid for the item you're looking at.<br> Check the auction status by adding it to the Wishlist.</div>
-</td>
-</tr>
-</table>
+</div>
 </div>
 {%endblock%}
