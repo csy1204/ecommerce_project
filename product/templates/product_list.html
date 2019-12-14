@@ -4,7 +4,7 @@
 
 {% if request.user.is_buyer %}
 <h2 style="margin-bottom:40px; font-size:35px; text-align:center; color:rgba(229,57,53,0.8);">전체 상품 목록</h2>
-<form action="/product/" method="post" style="margin-bottom:30px;">
+<form action="/" method="post" style="margin-bottom:30px;">
 {% csrf_token %}
 <p style="text-align:center;margin-bottom:30px; "> Search what you want!<br></p>
 <table style="margin:auto; width:800px;">
@@ -51,7 +51,7 @@
     {% for product in product_list %}
     <tr>
         <th scope="row">{{ product.id }}</th>
-        <td><a href="/product/{{ product.id }}" id="proname">{{ product.name }}</a></td>
+        <td><a href="/{{ product.id }}" id="proname">{{ product.name }}</a></td>
         <td>{{ product.price }}</td>
         <td>{{ product.phone_number }}</td>
         <td>{{ product.trading_place }}</td>

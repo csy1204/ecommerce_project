@@ -4,8 +4,8 @@
 <div style="text-align:center;">
   <h2 style="margin-bottom:30px; color:rgba(229,57,53,0.8);">{{product.name}}</h2>
   <p>
-      {% if prodcut.image %}
-      <img src="{{prodcut.image.url}}" style="width:300px; margin-bottom:30px;">
+      {% if product.image %}
+      <img src="{{product.image.url}}" style="width:300px; margin-bottom:30px;">
       {% else %}
       <img src="https://loremflickr.com/320/240/cat" style="width:300px; margin-bottom:30px;">
       {% endif %}
@@ -18,14 +18,14 @@
   {% elif product.status == 1 %}
   <table style="margin:auto; ">
     <th>
-    <form action="/product/bid">
+    <form action="/bid">
     {% csrf_token %}
     <input type="hidden" name="id" value="{{product.id}}">
     <button type="submit" id="bid" style="margin-bottom:45px;">Bid</button><Br>
     <input type="number" name="bid_price" style="width:150px;" placeholder="금액 입력">
     </form>
     </th>
-  <th><a href="/product/addwish?id={{product.id}}" id="wish" >Wish</a></th>
+  <th><a href="/addwish?id={{product.id}}" id="wish" >Wish</a></th>
   </table>
   {% elif product.status == 3%}
     <p>판매 완료</p>
@@ -33,13 +33,13 @@
   <div id="detailbutton">
   <table style="margin:auto;">
   <th>
-    <a href="/product/addwish?id={{product.id}}" id="wish" >Wish</a>
+    <a href="/addwish?id={{product.id}}" id="wish" >Wish</a>
   </th>
   <th>
-    <a href="/product/addcart?id={{product.id}}" id="cart" >Cart</a>
+    <a href="/addcart?id={{product.id}}" id="cart" >Cart</a>
   </th >
   <th>
-    <a href="/product/buy?id={{product.id}}" id="purchase" >Purchase</a>
+    <a href="/buy?id={{product.id}}" id="purchase" >Purchase</a>
   </th>
 
   </table>
