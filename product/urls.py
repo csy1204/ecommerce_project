@@ -1,8 +1,10 @@
 from django.urls import path
 from django.contrib.auth import views as auth_view
 from . import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
+    path('home/',TemplateView.as_view(template_name="product_home.html"), name="home"),
     path('', views.ProductList, name='products'),
     path('create/', views.ProductCreateView, name='product-create'),
     path('update/<int:pk>/', views.ProductUpdateView, name='product-update'),
