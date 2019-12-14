@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<h2 style="margin-bottom:30px; color:rgba(229,57,53,0.8); text-align:center;">Wishlist</h2>
+<h2 style="margin-bottom:40px; text-align:center; font-weight:800; font-size:45px; color:rgba(229,57,53,0.8); font-family:'Nanum Gothic', sans-serif; letter-spacing: 3.5px;">Wishlist</h2>
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -16,13 +16,13 @@
 {%for wish in wishes%}
 <tr>
     <td scope="row">{{ wish.id }}</td>
-    <td><a href="/product/{{ wish.id }}" id="proname">{{ wish.name }}</a></td>
+    <td><a href="/{{ wish.id }}" id="proname">{{ wish.name }}</a></td>
     <td><img src="{{wish.image.url}}" style="width:150px"></td>
     <td>{{wish.price}}</td>
     <td>{{wish.get_status_display}}</td>
-    {% for history in wish.auction_history.all %}
-        <td>{{history.price}} | {{history.bidder.name}}</td>
-    {% endfor %}
+    <td>{% for history in wish.auction_history.all %}
+        <p>{{history.price}} | {{history.bidder.name}}</p>
+    {% endfor %}</td>
 </tr>
 {%endfor%}
 </table>

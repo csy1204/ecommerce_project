@@ -45,7 +45,7 @@ def ProductCreateView(request):
             # naive datetime -> UTC +9:00 으로 변환                    
             new_product.end_time = timezone.make_aware(datetime.strptime(request.POST['end_time'], "%Y/%m/%d %H:%M"))
             new_product.save()                 
-            return HttpResponseRedirect('/product') 
+            return HttpResponseRedirect('/') 
     else:
         product_form = ProductForm()
                                                                   
@@ -62,7 +62,7 @@ def ProductUpdateView(request, pk):
         u_product = form.save(commit=False)
         u_product.end_time = timezone.make_aware(datetime.strptime(request.POST['end_time'], "%Y/%m/%d %H:%M"))
         u_product.save()
-        return redirect('/product/{}'.format(pk))
+        return redirect('/{}'.format(pk))
     print("not Valid")
     return render(request, 'product_create.html', {'form':form})
 
@@ -81,7 +81,7 @@ def BuyProduct(request):
     product = Product.objects.get(pk=request.GET.get('id',1))
     product.status = 3
     product.save()
-    return HttpResponseRedirect('/product/'+request.GET.get('id'))
+    return HttpResponseRedirect('/'+request.GET.get('id'))
 
 @login_required
 def BidProduct(request):
@@ -96,20 +96,20 @@ def BidProduct(request):
         bid_product.winner = request.user
         AuctionHistory.objects.create(product=bid_product, bidder=request.user, price=bid_price)
         bid_product.save()
-    return HttpResponseRedirect('/product/'+request.GET.get('id'))
+    return HttpResponseRedirect('/'+request.GET.get('id'))
     
 @login_required
 def AddWish(request):
     wish_product = Product.objects.get(pk=request.GET.get("id"))
     if request.user not in wish_product.wish.all():
         wish_product.wish.add(request.user)
-    return HttpResponseRedirect('/product/'+request.GET.get('id'))
+    return HttpResponseRedirect('/'+request.GET.get('id'))
 @login_required
 def AddCart(request):
     cart_product = Product.objects.get(pk=request.GET.get("id"))
     if request.user not in cart_product.cart.all():
         cart_product.cart.add(request.user)
-    return HttpResponseRedirect('/product/'+request.GET.get('id'))
+    return HttpResponseRedirect('/'+request.GET.get('id'))
 @login_required
 def WishList(request):
     cuurent_user = User.objects.get(pk=request.user)
@@ -137,4 +137,4 @@ def BuyAllProduct(request):
             product.status = 3
             product.save()
 
-    return redirect('/product/shopping/')
+    return redirect('/shopping/')

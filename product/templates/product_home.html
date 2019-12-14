@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+
+
+<h2 style="margin-bottom:30px; color:#807cb9; text-align:center; font-family: 'Open Sans', sans-serif; letter-spacing:12px;">2019 Ecommerce_project</h2>
+<div style="letter-spacing: 2px; text-align:center; margin:auto;">
+    {% if user.is_authenticated %}
+    <p style="letter-spacing: 3.5px;">Welcome, {{user.username}}! We are L2J.</p><Br>
+    {% endif %}
+
+    {% if user.is_anonymous %}
+    <p style="letter-spacing: 3.5px;">Login and be our member.</p><Br>
+    {% endif %}
+<table style="margin:auto; font-family : 'Nanum Gothic', sans-serif;">
+<tr>
+    <td>
+<div class="cardc"><figure><img src="{%static 'images/first.png'%}"></figure>Sell your product.<br> Choose the type of your transaction.</div>
+</td>
+<td>
+<div class="cardc"><figure><img src="{%static 'images/second.png'%}"></figure>Buy other's products.<br> Search for the products by price and product name.</div>
+</td>
+<td>
+<div class="cardc"><figure><img src="{%static 'images/third.png'%}"></figure>Bid for the item you're looking at.<br> Check the auction status by adding it to the Wishlist.</div>
+</td>
+</tr>
+</table>
+</div>
+{%endblock%}
