@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<h2 style="margin-bottom:30px; color:rgba(229,57,53,0.8); text-align:center;">Shopping Cart</h2>
+<h2 style="margin-bottom:40px; font-weight:800; font-size:45px; text-align:center; color:rgba(229,57,53,0.8); font-family:'Nanum Gothic', sans-serif; letter-spacing: 3.5px;">Shopping Cart</h2>
 <form action="/buyall" method="get">
     <table class="table">
             <thead class="thead-dark">
@@ -32,13 +32,13 @@
     <thead class="thead-dark">
             <tr>
                 <th scope="col">Total &nbsp;&nbsp;&nbsp;&nbsp;{{carts|length}} 개</th>
-                <th scope="col" style="text-align: end; padding-right:50px;">&nbsp;&nbsp; 전체&nbsp;금액:&nbsp;&nbsp;&nbsp;{{sum}}</th>
+                <th scope="col" style="text-align: end; padding-right:50px;">&nbsp;&nbsp; Total&nbsp;Price:&nbsp;&nbsp;&nbsp;{{sum}}</th>
             </tr>
     </thead>
 </table>
 <br>
 <div>
-    <button style="float:right;"type="submit" class="btn btn-success">모두 구매</button>
+    <button style="float:right;"type="submit" class="btn btn-success">Buy All</button>
 </div>
 </form>
 </tbody>

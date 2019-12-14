@@ -3,7 +3,7 @@
 {%block content%}
 
 {% if request.user.is_buyer %}
-<h2 style="margin-bottom:40px; font-size:35px; text-align:center; color:rgba(229,57,53,0.8);">전체 상품 목록</h2>
+<h2 style="margin-bottom:40px; font-weight:800; text-align:center; font-size:45px; color:rgba(229,57,53,0.8); font-family:'Nanum Gothic', sans-serif; letter-spacing: 3.5px;">Product List</h2>
 <form action="/" method="post" style="margin-bottom:30px;">
 {% csrf_token %}
 <p style="text-align:center;margin-bottom:30px; "> Search what you want!<br></p>

@@ -2,19 +2,26 @@
 {%load static%}
 {%block content%}
 
+
 <h2 style="margin-bottom:30px; color:#807cb9; text-align:center; font-family: 'Open Sans', sans-serif; letter-spacing:12px;">2019 Ecommerce_project</h2>
 <div style="letter-spacing: 2px; text-align:center; margin:auto;">
-<p style="letter-spacing: 3.5px;">접속을 환영합니다, {{user.username}}님! L2J입니다.</p><Br>
-<table style="margin:auto;">
+    {% if user.is_authenticated %}
+    <p style="letter-spacing: 3.5px;">Welcome, {{user.username}}! We are L2J.</p><Br>
+    {% endif %}
+
+    {% if user.is_anonymous %}
+    <p style="letter-spacing: 3.5px;">Login and be our member.</p><Br>
+    {% endif %}
+<table style="margin:auto; font-family : 'Nanum Gothic', sans-serif;">
 <tr>
     <td>
-<div class="cardc"><figure><img src="{%static 'images/first.png'%}"></figure>당신의 물건을 판매하세요.<br> 거래의 유형을 직접 선정하세요.</div>
+<div class="cardc"><figure><img src="{%static 'images/first.png'%}"></figure>Sell your product.<br> Choose the type of your transaction.</div>
 </td>
 <td>
-<div class="cardc"><figure><img src="{%static 'images/second.png'%}"></figure>다른 사람들의 물건을 구매하세요.<br> 가격, 상품명 등의 옵션을 선택하여 검색할 수 있습니다.</div>
+<div class="cardc"><figure><img src="{%static 'images/second.png'%}"></figure>Buy other's products.<br> Search for the products by price and product name.</div>
 </td>
 <td>
-<div class="cardc"><figure><img src="{%static 'images/third.png'%}"></figure>당신이 눈여겨 보고 있는 물건에 입찰하세요.<br> Wishlist에 추가하면 경매 상황을 확인 할 수 있습니다.</div>
+<div class="cardc"><figure><img src="{%static 'images/third.png'%}"></figure>Bid for the item you're looking at.<br> Check the auction status by adding it to the Wishlist.</div>
 </td>
 </tr>
 </table>
