@@ -232,6 +232,17 @@ h2 {
   font-family: Poppins, 'Nanum Gothic', sans-serif;
   font-size: 44px; }
 
+tr:hover{
+    background-color: #e3f0fc;
+    cursor: pointer;
+    font-size:105%;
+    transition: all .2s;
+}
+.highlight{
+  color:rgba(229,57,53,0.8);
+  font-size:25px;
+  font-weight:650;
+}
 .main {
   background: #f8f8f8;
   padding: 150px 0; }
@@ -247,6 +258,8 @@ body {
   font-weight: 400;
   font-family: Poppins,'Nanum Gothic', sans-serif;
 }
+
+
 /*
 .container {
   width: 900px;
@@ -931,12 +944,17 @@ background-size:70px;
 background-repeat:no-repeat;
 transition: all .2s;
 }
+
 #detailbutton{
-  text-align:center;
+  font-size:20px;
+  font-weight:650;
+  display:flex;
+  justify-content: center;
   margin:auto;
 }
 
 #bid{
+  
   background:None; 
   border-style:None; 
   color:#77c4e3;
