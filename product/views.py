@@ -13,6 +13,10 @@ from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin       #권한 제한하는 건데 @login_required라는 decorator는 함수형 (def)뷰에서 사용 지금은 클래스 형 뷰->Mixin사용
 from django.contrib.auth.decorators import login_required
 from accounts.models import User
+import os
+
+GMAP_KEY = os.environ['GMAP_KEY']
+
 @login_required
 def ProductList(request):
     if request.method == "GET":
@@ -28,8 +32,15 @@ def ProductList(request):
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
-    context_object_name = 'product'
     template_name='product_detail.html'
+    # context_object_name = 'product'
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        context['GMAP_KEY'] = GMAP_KEY
+        return context
+    
+
 @login_required
 def ProductCreateView(request):
     if request.method == 'POST':                                                          
@@ -50,7 +61,7 @@ def ProductCreateView(request):
         product_form = ProductForm()
                                                                   
 
-    return render(request, 'product_create.html',{'form':product_form})
+    return render(request, 'product_create.html',{'form':product_form, 'GMAP_KEY':GMAP_KEY})
 
 @login_required
 def ProductUpdateView(request, pk):

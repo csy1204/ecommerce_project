@@ -22,6 +22,8 @@ class Product(models.Model):
     seller = models.ForeignKey(User, default=1, on_delete=models.CASCADE, related_name="sell_list")
     # 경매 낙찰자
     winner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name="win_list")
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
     wish = models.ManyToManyField(User, related_name='wish_list') # us
     cart = models.ManyToManyField(User, related_name='cart_list')
     end_time = models.DateTimeField(blank=True, null=True)
