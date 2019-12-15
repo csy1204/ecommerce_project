@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 from accounts.models import User
 import os
 
-GMAP_KEY = os.environ['GMAP_KEY']
+GMAP_KEY = os.environ.get('GMAP_KEY')
 
 @login_required
 def ProductList(request):
