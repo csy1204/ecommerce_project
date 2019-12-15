@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from .forms import RegisterForm
 # Create your views here.
-
 def register(request):
     if request.method == 'POST':                                                                #회원 가입 정보가 전달
         user_form = RegisterForm(request.POST)                                                  #RegisterForm으로 유효성 검사
@@ -13,6 +12,8 @@ def register(request):
             new_user.id = request.POST['username']
             new_user.save()                 
             return render(request, 'registration/register_done.html', {'new_user':new_user})
+        else:
+            return render(request, 'registration/register.html',{'form':user_form})
     else:
         user_form = RegisterForm()                                                              
 
