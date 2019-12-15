@@ -10,9 +10,10 @@
 {% endif %}
 <div class="container">
     <div id="create">
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" style="display :grid;justify-items: center;">
         {% csrf_token %}
         <h2 style="margin-bottom:40px; font-weight:800; font-size:45px; color:rgba(229,57,53,0.8); font-family:'Nanum Gothic', sans-serif; letter-spacing: 3.5px;">Product Registration</h2>
+        
         <tr>
             <td>{{ form.name }}</td>
         </tr>
@@ -34,23 +35,55 @@
                 
         </tr>
         <tr>
-                <td><p>Select Type of Transaction {{ form.status }} </p></td>
+                <td><p>Select Type of Transaction {{ form.status }} </p></td><br>
         </tr>
+        
+        <div id="end_time" style="display:none; text-align:left;">
+            <tr>
+                <td><p style=" display:inline-block; width:400px;"> Choose deadline of the auction.</p></td>
+                <td><p style="width:450px; display:inline-block; margin-left:50px">{{form.end_time}}</p></td>
+            </tr>
+        </div>
+        <div style="display:flex;display:inline-block; justify-content:left;">
         <tr>
-                <td>{{ form.price }}</td>
+            <td></td><p style=" display:inline-block;width:400px">Write the price.</p></td>
+            <td><p style="width:450px; display:inline-block;margin-left:50px">{{form.price}}</p></td>
         </tr>
+    </div>
+        <!--
+        <div style="display:flex;display:inline-block;">
+            <tr>
+                <td><p style=" display:inline-block;"> Write price of your product.  &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                    <p style="width:450px; display:inline-block;">{{form.price}}</p></p></td>
+            </tr>
+        </div>-->
         <tr>
                 <td>{{ form.image }}</td>
         </tr>
         <tr>
-                <td>{{ form.end_time }}</td>
+            <td><button type="submit" class="form-submit" style="border-style:none;"> Submit</button></td>
         </tr>
+    </div>
         </table>
-        <button type="submit" class="form-submit" style="border-style:none;"> Submit</button>
+        
     </form>
 </div>
 </div>
 <script>
+
+    $(document).ready(function(){
+        $('#id_status').change(function(){
+        var check = $("#id_status").val();
+        console.log(check);
+        if(check==1){
+            $("#end_time").css('display','block');
+        }
+        else{
+            $("#end_time").css('display','none');
+        }
+    });
+    });
+
    $("#id_end_time").datetimepicker({format: 'Y/m/d H:i'});
    function getmap() {
         // gelocation을 지원하는지 확인한다.

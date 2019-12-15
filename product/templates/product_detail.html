@@ -19,7 +19,11 @@
       src="https://www.google.com/maps/embed/v1/directions?origin={{product.latitude}}%2C%20{{product.longitude}}&destination={{product.latitude}}%2C%20{{product.longitude}}&key={{GMAP_KEY}}" allowfullscreen></iframe> 
       {% endif %}
   <p>상품 등록 시간 : {{product.created_at}} <br></p>
+
+  {% if product.status == 1 %}
   <p>옥션 마감 시간 : {{product.end_time}}<br></p>
+  {% endif %}
+
   <p>판매가: {{product.price}}</p>
   <p>상품 최종 구매자 : {{product.winner.username}}</p><Br>
   {% if product.status == 1 and product.is_auction_end  %}
