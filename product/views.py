@@ -75,7 +75,7 @@ def ProductUpdateView(request, pk):
         u_product.save()
         return redirect('/{}'.format(pk))
     print("not Valid")
-    return render(request, 'product_create.html', {'form':form})
+    return render(request, 'product_create.html', {'form':form, 'GMAP_KEY':GMAP_KEY})
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product

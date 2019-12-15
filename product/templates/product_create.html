@@ -103,16 +103,24 @@
             var latitude = pos.coords.latitude;   // 적도의 북쪽 기준 각도인 위도
             var longitude = pos.coords.longitude; // 그리니치 천문대의 동쪽 기준 각도인 경도
             var accuracy = pos.coords.accuracy;   // 미터 단위의 정확도
-     
+            var lat_update = "{{ form.latitude.value }}";
+            var long_update = "{{ form.longitude.value }}";
             // 해당 위치의 구글 지도에 대한 정적 이미지 URL을 생성한다.
-            var map_url = "https://www.google.com/maps/embed/v1/view" 
+            console.log(lat_update, long_update);
+            var map_url;
+            if (lat_update !== "None" && long_update !== "None"){
+                map_url = "https://www.google.com/maps/embed/v1/view" 
+                + "?center=" + lat_update + "," + long_update + "&maptype=satellite";
+            } else {
+                map_url = "https://www.google.com/maps/embed/v1/view" 
                 + "?center=" + latitude + "," + longitude + "&maptype=satellite";
      
-            var lat_input = document.getElementById('id_latitude');
-            var long_input = document.getElementById('id_longitude');
-            lat_input.value = latitude;
-            long_input.value = longitude;
-                
+                var lat_input = document.getElementById('id_latitude');
+                var long_input = document.getElementById('id_longitude');
+
+                lat_input.value = latitude;
+                long_input.value = longitude;
+            }
 
             // 대략적으로 지도 줌 레벨을 계산하여 설정한다.
             var zoomlevel = 18; // 대부분 최대한 확대하여 시작한다.
