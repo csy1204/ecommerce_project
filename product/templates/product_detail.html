@@ -1,3 +1,5 @@
+
+
 {%extends 'base.html'%}
 
 {% block content %}
@@ -22,34 +24,29 @@
   <p>상품 최종 구매자 : {{product.winner.username}}</p><Br>
   {% if product.status == 1 and product.is_auction_end  %}
   <p>옥션 종료</p>
+
   {% elif product.status == 1 %}
-  <table style="margin:auto; ">
-    <th>
+  <div id="detailbutton">
     <form action="/bid">
     {% csrf_token %}
     <input type="hidden" name="id" value="{{product.id}}">
     <button type="submit" id="bid" style="margin-bottom:45px;">Bid</button><Br>
     <input type="number" name="bid_price" style="width:150px;" placeholder="금액 입력">
     </form>
-    </th>
-  <th><a href="/addwish?id={{product.id}}" id="wish" >Wish</a></th>
-  </table>
+    <a href="/addwish?id={{product.id}}" id="wish">Wish</a>
+  </div>
+
   {% elif product.status == 3%}
-    <p>판매 완료</p>
+  <p>판매 완료</p>
+
   {% else %}
   <div id="detailbutton">
-  <table style="margin:auto;">
-  <th>
     <a href="/addwish?id={{product.id}}" id="wish" >Wish</a>
-  </th>
-  <th>
-    <a href="/addcart?id={{product.id}}" id="cart" >Cart</a>
-  </th >
-  <th>
-    <a href="/buy?id={{product.id}}" id="purchase" >Purchase</a>
-  </th>
 
-  </table>
+    <a href="/addcart?id={{product.id}}" id="cart" >Cart</a>
+
+    <a href="/buy?id={{product.id}}" id="purchase" >Purchase</a>
+
   </div>
   {% endif %}
 </div>

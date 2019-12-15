@@ -23,7 +23,7 @@
             <img src="https://loremflickr.com/320/240/cat" style="width:150px">
             {% endif %}
         </td>
-        <td>{{cart_item.price}}</td>
+        <td>{{cart_item.price}} won</td>
         <input type="hidden" value="{{ cart_item.id }}" name="idList[]">
 </tr>
 {%endfor%}
@@ -32,13 +32,13 @@
     <thead class="thead-dark">
             <tr>
                 <th scope="col">Total &nbsp;&nbsp;&nbsp;&nbsp;{{carts|length}} 개</th>
-                <th scope="col" style="text-align: end; padding-right:50px;">&nbsp;&nbsp; Total&nbsp;Price:&nbsp;&nbsp;&nbsp;{{sum}}</th>
+                <th scope="col" style="text-align: end; padding-right:50px;">&nbsp;&nbsp; Total&nbsp;Price:&nbsp;&nbsp;&nbsp;{{sum}} won</th>
             </tr>
     </thead>
 </table>
 <br>
 <div>
-    <button style="float:right;"type="submit" class="btn btn-success">Buy All</button>
+    <button style="float:right; font-size:25px; margin-bottom:40px;"type="submit" class="btn btn-success">Buy All</button><br><br>
 </div>
 </form>
 </tbody>
